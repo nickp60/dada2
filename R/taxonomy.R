@@ -158,9 +158,10 @@ assignTaxonomy <- function(seqs, refFasta, minBoot=50, tryRC=FALSE, outputBootst
   if(outputBootstraps){
       # Convert boots to integer matrix
       boots.out <- matrix(boots, nrow=length(seqs), ncol=td)
+      boots.allgenera <- matrix(boots, nrow=length(seqs), ncol=td)
       rownames(boots.out) <- seqs
       colnames(boots.out) <- taxLevels[1:ncol(boots.out)]
-      list(tax=tax.out, boot=boots.out, prob = probs)
+      list(tax=tax.out, boot=boots.out, prob = probs,  all_tax=genus.unq, boot_tax=assignment$boot_tax, boot_topprop=assignment$boot_top_prob)
   } else {
     list(tax=tax.out, prob = probs)
   }
